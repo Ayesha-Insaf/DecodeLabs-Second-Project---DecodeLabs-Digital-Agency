@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecodeLabs Project 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">DecodeLabs</div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="eyebrow">Industrial Training · Batch 2026</span>
+        <h1>Build interfaces that <span class="highlight">adapt to anything.</span></h1>
+        <p>Responsive web design using real-world frontend projects and modern CSS layout techniques — from desktop monitors down to the smallest screen.</p>
+        <a href="#services"><button>Get Started</button></a>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <span class="eyebrow">What We Offer</span>
+    <h2>Our Services</h2>
+
+    <div class="service-container" style="margin-top: 50px;">
+
+        <div class="card">
+            <div class="icon">⌘</div>
+            <h3>Frontend Development</h3>
+            <p>Responsive UI built with HTML, CSS, and modern layout systems like Flexbox and Grid.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">◈</div>
+            <h3>UI/UX Design</h3>
+            <p>Clean, user-friendly interfaces grounded in real usability and design principles.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">▣</div>
+            <h3>Training Program</h3>
+            <p>Hands-on, industry-level project learning with structured mentorship at every step.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+    <span class="eyebrow">What You'll Build</span>
+    <h2>Training Projects</h2>
+
+    <div class="project-grid" style="margin-top: 50px;">
+        <div class="project-card">
+            <div class="project-num">01</div>
+            <h3>Landing Page Clone</h3>
+            <p>Pixel-accurate rebuild of a real product page using semantic HTML and CSS.</p>
+            <span class="project-tag">Foundations</span>
+        </div>
+        <div class="project-card active-project">
+            <div class="project-num">02</div>
+            <h3>Responsive Web Layout</h3>
+            <p>A fully fluid site that adapts from desktop to mobile using media queries.</p>
+            <span class="project-tag">You are here</span>
+        </div>
+        <div class="project-card">
+            <div class="project-num">03</div>
+            <h3>Interactive Components</h3>
+            <p>Dropdowns, modals, and carousels built with vanilla JavaScript.</p>
+            <span class="project-tag">Locked</span>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-inner">
+        <span class="eyebrow">Who We Are</span>
+        <h2>About DecodeLabs</h2>
+        <p>DecodeLabs helps learners build real-world frontend skills through structured practical projects and mentorship, turning interns into developers who ship production-ready work.</p>
+
+        <div class="about-stats">
+            <div class="stat">
+                <div class="num">12+</div>
+                <div class="label">Live Projects</div>
+            </div>
+            <div class="stat">
+                <div class="num">2026</div>
+                <div class="label">Current Batch</div>
+            </div>
+            <div class="stat">
+                <div class="num">100%</div>
+                <div class="label">Hands-On</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <span class="eyebrow">Get In Touch</span>
+    <h2>Contact</h2>
+    <p>Have a question about the program? Send a message below.</p>
+
+    <form class="contact-card" id="contactForm">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Your email" required>
+        <textarea placeholder="Your message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 DecodeLabs | All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+// Close mobile menu after clicking a link
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+    });
+});
+
+// Active nav link tracking on scroll
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) {
+            current = sec.getAttribute("id");
+        }
+    });
+    navItems.forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("href") === "#" + current) {
+            item.classList.add("active");
+        }
+    });
+});
+
+// Scroll-reveal animation
+const revealEls = document.querySelectorAll(".card, .project-card, .about-inner, .contact-card");
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-in");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => {
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+});
+
+// Contact form feedback (no backend — demo confirmation)
+const form = document.getElementById("contactForm");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    status.textContent = "Message sent! We'll get back to you soon.";
+    status.classList.add("show");
+    form.reset();
+    setTimeout(() => status.classList.remove("show"), 4000);
+});
+</script>
+
+</body>
+</html>
