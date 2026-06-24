@@ -1,4 +1,4 @@
-# DecodeLabs — Project 2: Responsive Web Layout
+# DecodeLabs — Project 2: DecodeLabs-Digital-Agency
 
 ## Overview
 This project is part of the DecodeLabs Industrial Training Kit (Batch 2026), built under the Frontend Development track. It is a fully responsive single-page website demonstrating fluid layout design using pure CSS — no frameworks involved. The goal was to build an interface that adapts cleanly across desktop, tablet, and mobile screens using CSS Media Queries.
